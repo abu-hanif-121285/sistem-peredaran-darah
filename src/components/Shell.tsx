@@ -6,8 +6,6 @@ import { NAV_ITEMS, useNav } from "@/store/nav";
 import { ProgressBar } from "./ui";
 import Avatar from "./Avatar";
 import BrandLogo from "./BrandLogo";
-import { LogoModal } from "./LogoUploader";
-import { useBrand } from "@/store/brand";
 
 function NavButton({
   icon,
@@ -69,9 +67,7 @@ function NavButton({
 export default function Shell({ children }: { children: ReactNode }) {
   const { route, go } = useNav();
   const { data, level, levelProgress, nextLevel, toasts, toggleAudio } = useProgress();
-  const { isOriginal } = useBrand();
   const [open, setOpen] = useState(false);
-  const [logoOpen, setLogoOpen] = useState(false);
 
   return (
     <div className="flex min-h-screen flex-col bg-[radial-gradient(1200px_600px_at_80%_-10%,#ffe4e9_0%,transparent_55%),radial-gradient(900px_500px_at_0%_0%,#dbeafe_0%,transparent_50%)] bg-[#eef3fb]">
@@ -104,20 +100,6 @@ export default function Shell({ children }: { children: ReactNode }) {
               Jelajah Sistem<br />Peredaran Darah 3D
             </span>
           </button>
-
-          {!isOriginal && (
-            <button
-              onClick={() => {
-                sfx.click();
-                setLogoOpen(true);
-              }}
-              title="Pasang berkas logo asli WAH Official"
-              className="press hidden rounded-lg border border-[#ffbf4d]/60 px-2 py-1 text-[11px] font-black text-[#ffcf72] hover:bg-white/10 md:block"
-            >
-              + Pasang logo asli
-            </button>
-          )}
-          <LogoModal open={logoOpen} onClose={() => setLogoOpen(false)} />
 
           <div className="ml-auto flex items-center gap-2">
             {/* XP chip */}
