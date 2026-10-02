@@ -5,8 +5,6 @@ import { useProgress } from "@/store/progress";
 import { cn } from "@/utils/cn";
 import { sfx, unlockAudio } from "@/lib/audio";
 import BrandLogo from "./BrandLogo";
-import { LogoUploader } from "./LogoUploader";
-import { useBrand } from "@/store/brand";
 import { IMG } from "@/assets/images";
 
 const PESAN = [
@@ -23,7 +21,6 @@ export default function Splash({ onDone }: { onDone: () => void }) {
   const [nama, setNama] = useState("");
   const [av, setAv] = useState<"putra" | "putri">("putra");
   const { data, setName } = useProgress();
-  const { isOriginal } = useBrand();
 
   useEffect(() => {
     const iv = window.setInterval(() => {
@@ -128,16 +125,6 @@ export default function Splash({ onDone }: { onDone: () => void }) {
               </button>
             ))}
           </div>
-          {!isOriginal && (
-            <details className="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-3 text-left">
-              <summary className="cursor-pointer text-sm font-black text-sky-800">
-                🖼️ Punya berkas logo asli WAH Official? Pasang di sini
-              </summary>
-              <div className="mt-3">
-                <LogoUploader compact />
-              </div>
-            </details>
-          )}
           <Button
             size="lg"
             className="mt-5 w-full"
